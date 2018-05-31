@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="code.js"></script>
+    <meta charset="UTF-8">
+    <title>Coffee Info</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Coffee Info</h1>
+    <div class="weightInfo">
+        <p id="weight"> Weight: </p>
+        <p class="text" id="kg"> 0.000 </p>
+        <p class="text"> kg </p>
+    </div>
+    <button>TARE</button>
+    <iframe id="graph" width="460" height="260"
+            style="border: 1px solid #cccccc;"
+            src="https://thingspeak.com/channels/492713/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Coffee+Weight+Over+Time&type=line&yaxis=Weight+%5Bkg%5D"></iframe>
+</div>
+</body>
+</html>
