@@ -1,7 +1,13 @@
 const $ = require('jquery');
 const SerialPort = require('serialport');
 const Readline = SerialPort.parsers.Readline;
-const port = new SerialPort('/dev/cu.usbmodem14221', {autoOpen: true, baudRate: 9600});
+
+
+// Ports for when testing on my mac and for Raspberry Pi
+const inputPortMac = '/dev/cu.usbmodem14221/';
+const inputPortRaspberry = '/dev/ttyACM0/';
+
+const port = new SerialPort(inputPortMac, {autoOpen: true, baudRate: 9600});
 const qs = require('qs');
 const credentials = require('./credentials');
 
