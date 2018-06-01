@@ -45,7 +45,9 @@ function runCodeContinuously() {
             counter = 0;
         }
 
-        setNumberOfCoffeeCupsLeft(data);
+        if(parseFloat(data.toString()) >= 0.000){
+            setNumberOfCoffeeCupsLeft(data);
+        }
 
     });
 }
