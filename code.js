@@ -47,7 +47,7 @@ function runCodeContinuously() {
             counter = 0;
         }
 
-        if(parseFloat(data.toString()) >= 0.000){
+        if(parseFloat(data.toString()) >= 0.000 && counter === 1){
             setNumberOfCoffeeCupsLeft(data);
         }
 
@@ -86,14 +86,14 @@ function setNumberOfCoffeeCupsLeft(weight) {
         .then(res => last = res.field2)
         .catch(err => console.log(err));
 
-    if(last !== undefined){
+    if(last === undefined){
         if (parseInt(last) !== cups) {
             fetch('https://api.thingspeak.com/update.json?', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: qs.stringify({
                     api_key: credentials.write_key,
-                    field2: cups.toString()
+                    field2: "0"
                 })
             })
                 .catch(err => console.log(err))
