@@ -18,6 +18,8 @@ const cupOfCoffee = 0.150; //in kg
 const fullCanOfCoffee = 1.800; //in kg
 const numOfCupsPerCan = 12.0;
 
+let last = 0;
+
 $(document).ready(function () {
     runCodeContinuously();
 });
@@ -61,7 +63,7 @@ function updateWeightText(weight) {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: qs.stringify({
-            api_key: credentials.write_key
+            api_key: credentials.write_key,
             field1: weight.toString()
         })
     })
@@ -70,7 +72,7 @@ function updateWeightText(weight) {
 
 function setNumberOfCoffeeCupsLeft(weight) {
     let weightDouble = parseFloat(weight.toString());
-    let last = 0;
+
     let cups = parseInt(Math.floor(weightDouble / cupOfCoffee).toString());
     console.log("Last = " + last);
     console.log("Cups = " + cups);
@@ -85,12 +87,12 @@ function setNumberOfCoffeeCupsLeft(weight) {
         .catch(err => console.log(err));
 
     if (parseInt(last) !== cups) {
-        fetch('https://api.thingspeak.com/update.json', {
+        fetch('https://api.thingspeak.com/update.json?', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: qs.stringify({
                 api_key: credentials.write_key,
-                field1: cups.toString()
+                field2: cups.toString()
             })
         })
             .catch(err => console.log(err))
