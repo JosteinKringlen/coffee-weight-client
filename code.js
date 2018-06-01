@@ -47,7 +47,7 @@ function runCodeContinuously() {
             counter = 0;
         }
 
-        if(parseFloat(data.toString()) >= 0.000 && counter === 1){
+        if(parseFloat(data.toString()) >= 0.000){
             setNumberOfCoffeeCupsLeft(data);
         }
 
@@ -97,6 +97,7 @@ function setNumberOfCoffeeCupsLeft(weight) {
                     field2: cups.toString()
                 })
             })
+                .then(res => last = cups)
                 .catch(err => console.log(err))
         }
     }
