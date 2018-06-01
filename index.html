@@ -2,24 +2,35 @@
 <html>
 <head>
     <link rel="stylesheet" href="styling.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
     <script>window.$ = window.jQuery = require('jquery');</script>
+    <script></script>
     <script src="code.js"></script>
     <meta charset="UTF-8">
     <title>Coffee Info</title>
 </head>
-<body>
+<body class="w3-theme-14">
 
 <div class="container">
     <h1>Coffee Info</h1>
     <div class="weightInfo">
-        <p id="weight"> Weight: </p>
-        <p class="text" id="kg"> 0.000 </p>
-        <p class="text"> kg </p>
+        <h5 id="weight"> Weight: </h5>
+        <h5 class="text" id="kg"> 0.000 </h5>
+        <h5 class="text"> kg </h5>
     </div>
-    <button>TARE</button>
+    <a class="waves-effect waves-light btn" style="cursor: none; margin-top: 25px">TARE</a>
     <iframe id="graph" width="460" height="260"
             style="border: 1px solid #cccccc; cursor: none;"
-            src="https://thingspeak.com/channels/492713/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Coffee+Weight+Over+Time&type=line&yaxis=Weight+%5Bkg%5D"></iframe>
+            src="https://thingspeak.com/channels/492713/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Coffee+Weight+Over+Time&type=spline&yaxis=Weight+%5Bkg%5D">
+    </iframe>
 </div>
 </body>
 </html>
