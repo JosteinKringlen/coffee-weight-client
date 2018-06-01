@@ -74,12 +74,9 @@ function setNumberOfCoffeeCupsLeft(weight) {
     let cups = Math.floor(weightDouble / cupOfCoffee);
 
 
-    fetch('https://api.thingspeak.com/channels/492713/fields/2/last.json', {
+    fetch('https://api.thingspeak.com/channels/492713/fields/2/last.json?api_key='+credentials.read_key, {
         method: 'GET',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: qs.stringify({
-                api_key: credentials.read_key
-        })
     })
         .then(res => res.json())
         .then(res => last = res.field2)
