@@ -9,8 +9,7 @@ const inputPortRaspberry = '/dev/ttyACM0';
 
 const port = new SerialPort(inputPortRaspberry, {autoOpen: true, baudRate: 9600});
 const qs = require('qs');
-let credentials = require('./credentials');
-credentials = JSON.stringify(credentials);
+const credentials = require('./credentials');
 
 // Update time in seconds
 const updateTime = 30;
