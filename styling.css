@@ -19,3 +19,6 @@
 .text {
     margin-left: 0.5em;
 }
+body {
+    cursor: none;
+}

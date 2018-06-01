@@ -7,7 +7,7 @@ const Readline = SerialPort.parsers.Readline;
 const inputPortMac = '/dev/cu.usbmodem14221/';
 const inputPortRaspberry = '/dev/ttyACM0/';
 
-const port = new SerialPort(inputPortMac, {autoOpen: true, baudRate: 9600});
+const port = new SerialPort(inputPortRaspberry, {autoOpen: true, baudRate: 9600});
 const qs = require('qs');
 const credentials = require('./credentials');
 
