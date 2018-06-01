@@ -84,7 +84,7 @@ function setNumberOfCoffeeCupsLeft(weight) {
         .catch(err => console.log(err));
 
     if (parseInt(last) !== cups) {
-        fetch('https://api.thingspeak.com/channels/492713/fields/2/udpate.json', {
+        fetch('https://api.thingspeak.com/channels/492713/fields/2/update.json', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: qs.stringify({
