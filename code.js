@@ -19,7 +19,7 @@ $(document).ready(function () {
 });
 
 function runCodeContinuously(){
-    $("button").click(() => {
+    $("#button").click(() => {
         port.write("tare", function (err) {
             if(err){
                 return console.log(err)
