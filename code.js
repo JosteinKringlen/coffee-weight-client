@@ -76,6 +76,7 @@ function setNumberOfCoffeeCupsLeft(weight) {
     let cups = parseInt(Math.floor(weightDouble / cupOfCoffee).toString());
     console.log("Last = " + last);
     console.log("Cups = " + cups);
+    console.log(credentials.write_key);
 
 
     fetch('https://api.thingspeak.com/channels/492713/fields/2/last.json?api_key='+credentials.read_key, {
