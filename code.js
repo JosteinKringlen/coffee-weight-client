@@ -5,7 +5,7 @@ const Readline = SerialPort.parsers.Readline;
 
 // Ports for when testing on my mac and for Raspberry Pi
 const inputPortMac = '/dev/cu.usbmodem14221';
-const inputPortRaspberry = '/dev/ttyAMC0';
+const inputPortRaspberry = '/dev/ttyACM0';
 
 const port = new SerialPort(inputPortRaspberry, {autoOpen: true, baudRate: 9600});
 const qs = require('qs');
