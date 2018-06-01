@@ -63,3 +63,4 @@ typings/
 
 .idea
 credentials.json
+dist/

@@ -4,6 +4,7 @@
   "main": "main.js",
   "author": "Jostein Kringlen & Lars Henrik Haug",
   "license": "MIT",
+  "description": "Coffee Stats!",
   "scripts": {
     "start": "electron .",
     "install": "electron-rebuild"
