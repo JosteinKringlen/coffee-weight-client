@@ -86,15 +86,17 @@ function setNumberOfCoffeeCupsLeft(weight) {
         .then(res => last = res.field2)
         .catch(err => console.log(err));
 
-    if (parseInt(last) !== cups) {
-        fetch('https://api.thingspeak.com/update.json?', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: qs.stringify({
-                api_key: credentials.write_key,
-                field2: cups.toString()
+    if(last !== undefined){
+        if (parseInt(last) !== cups) {
+            fetch('https://api.thingspeak.com/update.json?', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: qs.stringify({
+                    api_key: credentials.write_key,
+                    field2: cups.toString()
+                })
             })
-        })
-            .catch(err => console.log(err))
+                .catch(err => console.log(err))
+        }
     }
 }
