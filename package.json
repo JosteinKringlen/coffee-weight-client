@@ -5,10 +5,12 @@
   "author": "Jostein Kringlen & Lars Henrik Haug",
   "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "install": "electron-rebuild"
   },
   "devDependencies": {
-    "electron": "^2.0.2"
+    "electron": "^2.0.2",
+    "electron-rebuild": "^1.7.3"
   },
   "dependencies": {
     "fetch": "^1.1.0",
