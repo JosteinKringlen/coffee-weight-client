@@ -11,7 +11,6 @@ const port = new SerialPort(inputPortRaspberry, {autoOpen: true, baudRate: 9600}
 const qs = require('qs');
 const credentials = require('./credentials');
 
-const moment = require('moment');
 const delay = require('delay');
 
 // Update time in seconds
