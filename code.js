@@ -11,6 +11,9 @@ const port = new SerialPort(inputPortRaspberry, {autoOpen: true, baudRate: 9600}
 const qs = require('qs');
 const credentials = require('./credentials');
 
+const moment = require('moment');
+const delay = require('delay');
+
 // Update time in seconds
 const updateTime = 30;
 // Standard cup of coffee is apparently 150 ml = 150 g
@@ -19,8 +22,20 @@ const fullCanOfCoffee = 1.800; //in kg
 const numOfCupsPerCan = 12.0;
 
 let last = 0;
+let topLevelData = "";
 
 $(document).ready(function () {
+    fetch('https://api.thingspeak.com/channels/492713/fields/2/last.json?api_key='+credentials.read_key, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    })
+        .then(res => res.json())
+        .then(res => {
+            if(res.field2 !== undefined){
+                last = res.field2;
+            } else last = 0;
+        })
+        .catch(err => console.log(err));
     runCodeContinuously();
 });
 
@@ -40,15 +55,24 @@ function runCodeContinuously() {
     let counter = 0;
     port.pipe(parser);
     parser.on('data', function (data) {
+
+        let weightDouble = parseFloat(data.toString());
+        let cups = parseInt(Math.floor(weightDouble / cupOfCoffee).toString());
+
         $("#kg").text(data.toString());
         counter++;
         if (counter === updateTime) {
             updateWeightText(data);
             counter = 0;
         }
-
+        topLevelData = data.toString();
         if(parseFloat(data.toString()) >= 0.000){
-            setNumberOfCoffeeCupsLeft(data);
+
+            (async () => {
+                await delay(30000);
+                setNumberOfCoffeeCupsLeft(topLevelData);
+            })
+
         }
 
     });
@@ -74,18 +98,6 @@ function setNumberOfCoffeeCupsLeft(weight) {
     let weightDouble = parseFloat(weight.toString());
 
     let cups = parseInt(Math.floor(weightDouble / cupOfCoffee).toString());
-    console.log("Last = " + last);
-    console.log("Cups = " + cups);
-    //console.log(credentials.write_key);
-
-
-    fetch('https://api.thingspeak.com/channels/492713/fields/2/last.json?api_key='+credentials.read_key, {
-        method: 'GET',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    })
-        .then(res => res.json())
-        .then(res => last = res.field2)
-        .catch(err => console.log(err));
 
     if(last !== undefined){
         if (parseInt(last) !== cups) {
