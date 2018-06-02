@@ -24,13 +24,13 @@ let last = 0;
 let topLevelData = "";
 
 $(document).ready(function () {
-    fetch('https://api.thingspeak.com/channels/492713/fields/2/last.json?api_key='+credentials.read_key, {
+    fetch('https://api.thingspeak.com/channels/492713/fields/2/last.json?api_key=' + credentials.read_key, {
         method: 'GET',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     })
         .then(res => res.json())
         .then(res => {
-            if(res.field2 !== undefined){
+            if (res.field2 !== undefined) {
                 last = res.field2;
             } else last = 0;
         })
@@ -52,6 +52,7 @@ function runCodeContinuously() {
     // and gives each number on a single line
     let parser = new Readline();
     let counter = 0;
+    let counter2 = 0;
     port.pipe(parser);
     parser.on('data', function (data) {
 
@@ -65,12 +66,14 @@ function runCodeContinuously() {
             counter = 0;
         }
         topLevelData = data.toString();
-        if(parseFloat(data.toString()) >= 0.000){
-
-            (async () => {
-                await delay(30000);
-                setNumberOfCoffeeCupsLeft(topLevelData);
-            })
+        if (parseFloat(data.toString()) >= 0.000) {
+            if (parseInt(last) !== cups) {
+                counter2++;
+                if (counter2 === updateTime) {
+                    setNumberOfCoffeeCupsLeft(topLevelData);
+                    counter2 = 0;
+                }
+            }
 
         }
 
@@ -98,7 +101,7 @@ function setNumberOfCoffeeCupsLeft(weight) {
 
     let cups = parseInt(Math.floor(weightDouble / cupOfCoffee).toString());
 
-    if(last !== undefined){
+    if (last !== undefined) {
         if (parseInt(last) !== cups) {
             console.log("Pushing to ThingSpeak");
             fetch('https://api.thingspeak.com/update.json', {
