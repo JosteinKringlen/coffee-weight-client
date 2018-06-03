@@ -149,5 +149,7 @@ function createTwitterStatus(tweet){
             api_key: credentials.thing_tweet,
             status: tweet
         })
-    }).catch(err => console.log(err))
+    })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
 }
