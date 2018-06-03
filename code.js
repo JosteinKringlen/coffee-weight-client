@@ -122,18 +122,24 @@ function setNumberOfCoffeeCupsLeft(weight) {
                     createTwitterStatus(tweets.empty);
                     break;
                 case 1:
-                    if(last === 0) {
-                        createTwitterStatus(tweets.filling);
-                        break;
-                    }
+                    //if(last === 0) {
+                      //  createTwitterStatus(tweets.filling);
+                      //  break;
+                   //}
                     createTwitterStatus(tweets.oneCup[randomInt]);
                     break;
                 case 2:
-                    if(last === 0){
-                        createTwitterStatus(tweets.filling);
-                        break;
-                    }
+                    //if(last === 0){
+                      //  createTwitterStatus(tweets.filling);
+                        //break;
+                    //}
                     createTwitterStatus(tweets.twoCup[randomInt]);
+                    break;
+                case 12:
+                    if(last === 0){
+                        createTwitterStatus(tweets.filling)
+                    }
+                    break;
             }
 
         }
