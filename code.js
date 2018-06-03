@@ -10,6 +10,7 @@ const inputPortRaspberry = '/dev/ttyACM0';
 const port = new SerialPort(inputPortRaspberry, {autoOpen: true, baudRate: 9600});
 const qs = require('qs');
 const credentials = require('./credentials');
+const tweets = require('./tweets');
 
 const delay = require('delay');
 
@@ -40,6 +41,7 @@ $(document).ready(function () {
 
 function runCodeContinuously() {
     $("#button").click(() => {
+        createTwitterStatus();
         port.write("tare", function (err) {
             if (err) {
                 return console.log(err)
@@ -113,7 +115,29 @@ function setNumberOfCoffeeCupsLeft(weight) {
                 })
             })
                 .then(res => last = cups)
-                .catch(err => console.log(err))
+                .catch(err => console.log(err));
+
+            let randomInt = Math.floor((Math.random()*3)+1);
+            switch (cups) {
+                case 1:
+                    createTwitterStatus(tweets.oneCup[randomInt]);
+                    break;
+                case 2:
+                    createTwitterStatus(tweets.twoCup[randomInt]);
+            }
+
         }
     }
+}
+
+
+function createTwitterStatus(tweet){
+    fetch('https://api.thingspeak.com/apps/thingtweet/1/statuses/update', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: qs.stringify({
+            api_key: credentials.thing_tweet,
+            status: tweet
+        })
+    }).catch(err => console.log(err))
 }
