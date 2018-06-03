@@ -41,7 +41,6 @@ $(document).ready(function () {
 
 function runCodeContinuously() {
     $("#button").click(() => {
-        createTwitterStatus();
         port.write("tare", function (err) {
             if (err) {
                 return console.log(err)
@@ -119,10 +118,21 @@ function setNumberOfCoffeeCupsLeft(weight) {
 
             let randomInt = Math.floor((Math.random()*3)+1);
             switch (cups) {
+                case 0:
+                    createTwitterStatus(tweets.empty);
+                    break;
                 case 1:
+                    if(last === 0) {
+                        createTwitterStatus(tweets.filling);
+                        break;
+                    }
                     createTwitterStatus(tweets.oneCup[randomInt]);
                     break;
                 case 2:
+                    if(last === 0){
+                        createTwitterStatus(tweets.filling);
+                        break;
+                    }
                     createTwitterStatus(tweets.twoCup[randomInt]);
             }
 

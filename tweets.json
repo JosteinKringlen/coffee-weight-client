@@ -1,7 +1,6 @@
 {
-  "filling": [
-    "Fresh, hot coffee is on its way!"
-  ],
+  "filling": "Fresh, hot coffee is on its way!",
+  "empty": "Oh noes, all out of coffee! Better brew some more!",
   "oneCup": [
     "There is only one cup of coffee left! Better brew a new pot if you take the last cup 😎",
     "You should hurry if you want to get some of that liquid gold - there's only one cup left!",
