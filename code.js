@@ -134,14 +134,11 @@ function setNumberOfCoffeeCupsLeft(weight) {
                         //break;
                     //}
                     createTwitterStatus(tweets.twoCup[randomInt]);
-                    break;
-                case 12:
-                    if(last === 0){
-                        createTwitterStatus(tweets.filling)
-                    }
-                    break;
             }
 
+            if(last === 0 && cups >= 6){
+                createTwitterStatus(tweets.filling)
+            }
         }
     }
 }
