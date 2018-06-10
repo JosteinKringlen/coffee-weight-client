@@ -161,6 +161,6 @@ function createTwitterStatus(tweet){
         })
     })
         .then(res => res.json())
-        .then(res => console.log(res))
+        .then(res => console.log('Response from ThingTweet: ' + res))
         .catch(err => console.log(err))
 }
