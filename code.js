@@ -154,5 +154,7 @@ function createTwitterStatus(tweet){
         })
     })
         .then(res => console.log(res))
+        .then(res => JSON.stringify(res))
+        .then(res => console.log(res.body))
         .catch(err => console.log(err))
 }
