@@ -117,6 +117,7 @@ function setNumberOfCoffeeCupsLeft(weight) {
                 .catch(err => console.log(err));
 
             let randomInt = Math.floor((Math.random()*3)+1);
+            let tweet = "";
             switch (cups) {
                 case 0:
                     createTwitterStatus(tweets.empty);
@@ -126,14 +127,18 @@ function setNumberOfCoffeeCupsLeft(weight) {
                       //  createTwitterStatus(tweets.filling);
                       //  break;
                    //}
-                    createTwitterStatus(tweets.oneCup[randomInt-1]);
+                    tweet = tweets.oneCup[randomInt-1];
+                    console.log(tweet);
+                    createTwitterStatus(tweet);
                     break;
                 case 2:
                     //if(last === 0){
                       //  createTwitterStatus(tweets.filling);
                         //break;
                     //}
-                    createTwitterStatus(tweets.twoCup[randomInt-1]);
+                    tweet = tweets.twoCup[randomInt-1];
+                    console.log(tweet);
+                    createTwitterStatus(tweet);
             }
 
             if(last === 0 && cups >= 6){
@@ -153,8 +158,6 @@ function createTwitterStatus(tweet){
             status: tweet
         })
     })
-        .then(res => console.log(res))
-        .then(res => JSON.stringify(res))
         .then(res => console.log(res))
         .catch(err => console.log(err))
 }
