@@ -119,6 +119,7 @@ function setNumberOfCoffeeCupsLeft(weight) {
                     switch (cups) {
                         case 0:
                             createTwitterStatus(tweets.empty);
+                            console.log(tweets.empty);
                             break;
                         case 1:
                             //if(last === 0) {
@@ -159,6 +160,7 @@ function createTwitterStatus(tweet){
             status: tweet
         })
     })
+        .then(res => res.json())
         .then(res => console.log(res))
         .catch(err => console.log(err))
 }
